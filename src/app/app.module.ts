@@ -1,20 +1,17 @@
-import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { ProductData } from './products/product-data';
-
-import { AppComponent } from './app.component';
-import { WelcomeComponent } from './home/welcome.component';
+import { MessageModule } from './messages/message.module';
+import { NgModule } from '@angular/core';
 import { PageNotFoundComponent } from './page-not-found.component';
-
+import { ProductData } from './products/product-data';
 /* Feature Modules */
 import { ProductModule } from './products/product.module';
+import { RouterModule } from '@angular/router';
 import { UserModule } from './user/user.module';
-import { MessageModule } from './messages/message.module';
+import { WelcomeComponent } from './home/welcome.component';
 
 @NgModule({
   imports: [
@@ -23,7 +20,7 @@ import { MessageModule } from './messages/message.module';
     InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' }, // Configured Routes
       { path: '**', component: PageNotFoundComponent }
     ]),
     ProductModule,
