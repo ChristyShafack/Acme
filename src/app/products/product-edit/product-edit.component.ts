@@ -1,8 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Product, ProductResolved } from '../product';
 
 import { MessageService } from '../../messages/message.service';
-import { Product } from '../product';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -22,26 +22,22 @@ export class ProductEditComponent {
 
     
     //Using an observable
-    ngOnInit(): void {
-      this.route.paramMap.subscribe(
-       params => {
-          const id = +params.get('id');
-          this.getProduct(id);
-        }
-      );
-    }
-
     // ngOnInit(): void {
-    //   const id = +this.route.snapshot.paramMap.get('id');
-    //   this.getProduct(id);
+    //   this.route.paramMap.subscribe(
+    //    params => {
+    //       const id = +params.get('id');
+    //       this.getProduct(id);
+    //     }
+    //   );
     // }
 
-  getProduct(id: number): void {
-    this.productService.getProduct(id).subscribe({
-      next: product => this.onProductRetrieved(product),
-      error: err => this.errorMessage = err
-    });
-  }
+    ngOnInit(): void {
+      const resolvedData: ProductResolved = 
+      this.route.snapshot.data['resolvedData'];
+      this.errorMessage = resolvedData.error;
+      this.onProductRetrieved(resolvedData.product);
+    }
+
 
   onProductRetrieved(product: Product): void {
     this.product = product;
