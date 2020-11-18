@@ -18,10 +18,22 @@ export class ProductEditComponent {
   constructor(private productService: ProductService,
               private messageService: MessageService,
               private route: ActivatedRoute) { }
+
+    
+    //Using an observable
     ngOnInit(): void {
-      const id = +this.route.snapshot.paramMap.get('id');
-      this.getProduct(id);
+      this.route.paramMap.subscribe(
+       params => {
+          const id = +params.get('id');
+          this.getProduct(id);
+        }
+      );
     }
+
+    // ngOnInit(): void {
+    //   const id = +this.route.snapshot.paramMap.get('id');
+    //   this.getProduct(id);
+    // }
 
   getProduct(id: number): void {
     this.productService.getProduct(id).subscribe({
