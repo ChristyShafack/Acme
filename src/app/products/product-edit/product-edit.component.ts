@@ -1,6 +1,6 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../../messages/message.service';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
@@ -17,7 +17,8 @@ export class ProductEditComponent {
 
   constructor(private productService: ProductService,
               private messageService: MessageService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
     
     //Using an observable
@@ -94,5 +95,6 @@ export class ProductEditComponent {
     }
 
     // Navigate back to the product list
+    this.router.navigate(['/products']);
   }
 }
