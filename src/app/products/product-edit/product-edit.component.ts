@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../../messages/message.service';
-
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 
@@ -16,7 +16,12 @@ export class ProductEditComponent {
   product: Product;
 
   constructor(private productService: ProductService,
-              private messageService: MessageService) { }
+              private messageService: MessageService,
+              private route: ActivatedRoute) { }
+    ngOnInit(): void {
+      const id = +this.route.snapshot.paramMap.get('id');
+      this.getProduct(id);
+    }
 
   getProduct(id: number): void {
     this.productService.getProduct(id).subscribe({
