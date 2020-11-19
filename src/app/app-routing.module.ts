@@ -17,7 +17,8 @@ import { WelcomeComponent } from './home/welcome.component';
             { path: 'welcome', component: WelcomeComponent },
             { path: '', redirectTo: 'welcome', pathMatch: 'full' }, // Configured Routes
             { path: '**', component: PageNotFoundComponent }
-        ]),
+        ]) 
+        // { enableTracing: true } it resolves routing problems
     ],
     exports: [ RouterModule ]
 })
