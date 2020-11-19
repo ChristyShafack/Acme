@@ -1,11 +1,13 @@
 import { AuthService } from './user/auth.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { slideInAnimation } from './app.animation';
 
 @Component({
   selector: 'pm-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [slideInAnimation],
 })
 export class AppComponent {
   pageTitle = 'Acme Product Management';
