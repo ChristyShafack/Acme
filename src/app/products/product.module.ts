@@ -12,28 +12,20 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     SharedModule,
     RouterModule.forChild([
-      { path: 'products', component: ProductListComponent },
-      { path: 'products/:id', 
-      component: ProductDetailComponent, 
-      resolve: { resolvedData: ProductResolver} },
-      { path: 'products/:id/edit', 
-      component: ProductEditComponent,
-      resolve: { resolvedData: ProductResolver},
+      { path: 'products', component: ProductListComponent,
       children:[
-        {
-          path: '',
-          redirectTo: 'info',
-          pathMatch: 'full'
-        },
-        {
-          path: 'info',
-          component: ProductEditInfoComponent
-        },
-        {
-          path: 'tags',
-          component: ProductEditTagsComponent
-        }
-      ]}
+        { path: ':id', 
+        component: ProductDetailComponent, 
+        resolve: { resolvedData: ProductResolver} },
+        { path: ':id/edit', 
+        component: ProductEditComponent,
+        resolve: { resolvedData: ProductResolver},
+        children:[
+          { path: '', redirectTo: 'info', pathMatch: 'full'},
+          { path: 'info', component: ProductEditInfoComponent },
+          { path: 'tags', component: ProductEditTagsComponent }
+        ]}
+      ]},
     ]),
   ],
   declarations: [
