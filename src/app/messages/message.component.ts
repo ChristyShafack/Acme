@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-
 import { MessageService } from './message.service';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './message.component.html',
@@ -18,6 +17,8 @@ export class MessageComponent {
               private router: Router) { }
 
   close(): void {
+    this.router.navigate([{ outlets: { popup: null }}]);
+    this.messageService.isDisplayed = false;
     // Close the popup.
   }
 }
