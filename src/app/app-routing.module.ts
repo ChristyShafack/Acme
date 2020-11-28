@@ -18,7 +18,8 @@ import { WelcomeComponent } from './home/welcome.component';
         RouterModule.forRoot([
             { path: 'welcome', component: WelcomeComponent },
             { path: 'products',
-            canActivate:[AuthGuard],
+            // canActivate:[AuthGuard],
+            canLoad:[AuthGuard],
                 loadChildren: () => 
                 import('./products/product.module').then(m => m.ProductModule)},
             { path: '', redirectTo: 'welcome', pathMatch: 'full' }, // Configured Routes
