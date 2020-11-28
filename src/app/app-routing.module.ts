@@ -1,6 +1,8 @@
+import { ActivatedRouteSnapshot, RouterModule } from '@angular/router';
+
+import { AuthGuard } from './user/auth.guard';
 import { NgModule } from '@angular/core';
 import { PageNotFoundComponent } from './page-not-found.component';
-import { RouterModule } from '@angular/router';
 import { WelcomeComponent } from './home/welcome.component';
 
 // Another Alternative
@@ -16,6 +18,7 @@ import { WelcomeComponent } from './home/welcome.component';
         RouterModule.forRoot([
             { path: 'welcome', component: WelcomeComponent },
             { path: 'products',
+            canActivate:[AuthGuard],
                 loadChildren: () => 
                 import('./products/product.module').then(m => m.ProductModule)},
             { path: '', redirectTo: 'welcome', pathMatch: 'full' }, // Configured Routes
