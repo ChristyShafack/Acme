@@ -10,7 +10,6 @@ import { NgModule } from '@angular/core';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { ProductData } from './products/product-data';
 /* Feature Modules */
-import { ProductModule } from './products/product.module';
 // import { RouterModule } from '@angular/router';
 import { UserModule } from './user/user.module';
 import { WelcomeComponent } from './home/welcome.component';
@@ -21,7 +20,6 @@ import { WelcomeComponent } from './home/welcome.component';
     BrowserAnimationsModule,
     HttpClientModule,
     InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
-    ProductModule,
     UserModule,
     MessageModule,
     AppRoutingModule,
