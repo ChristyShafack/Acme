@@ -1,4 +1,5 @@
-import { ActivatedRouteSnapshot, RouterModule } from '@angular/router';
+// for canActivate() GUARD import { ActivatedRouteSnapshot, RouterModule } from '@angular/router';
+import { PreloadAllModules, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './user/auth.guard';
 import { NgModule } from '@angular/core';
@@ -18,13 +19,13 @@ import { WelcomeComponent } from './home/welcome.component';
         RouterModule.forRoot([
             { path: 'welcome', component: WelcomeComponent },
             { path: 'products',
-            // canActivate:[AuthGuard],
-            canLoad:[AuthGuard],
+            canActivate:[AuthGuard],
+            // canLoad:[AuthGuard],
                 loadChildren: () => 
                 import('./products/product.module').then(m => m.ProductModule)},
             { path: '', redirectTo: 'welcome', pathMatch: 'full' }, // Configured Routes
             { path: '**', component: PageNotFoundComponent }
-        ]) 
+        ], { preloadingStrategy: PreloadAllModules}) 
         // { enableTracing: true } it resolves routing problems
     ],
     exports: [ RouterModule ]
