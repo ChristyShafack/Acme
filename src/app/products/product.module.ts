@@ -2,6 +2,7 @@ import { AuthGuard } from '../user/auth.guard'
 import { NgModule } from '@angular/core';
 import { ProductDetailComponent } from './product-detail.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { ProductEditGuard } from './product-edit/product-edit.guard';
 import { ProductEditInfoComponent } from './product-edit/product-edit-info.component';
 import { ProductEditTagsComponent } from './product-edit/product-edit-tags.component';
 import { ProductListComponent } from './product-list.component';
@@ -26,6 +27,7 @@ import { SharedModule } from '../shared/shared.module';
           {
             path: ':id/edit',
             component: ProductEditComponent,
+            canDeactivate: [ ProductEditGuard ],
             resolve: { resolvedData: ProductResolver },
             children: [
               { path: '', redirectTo: 'info', pathMatch: 'full' },
